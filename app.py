@@ -1,13 +1,17 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, Response, jsonify
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
+
+from rest_apis.chat_api import chat_gpt_api
 # from langchain_openai import ChatOpenAI
 # from langchain.schema import HumanMessage
 
 app = Flask(__name__)
 
 load_dotenv()
+
+app.register_blueprint(chat_gpt_api)
 
 UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
@@ -20,6 +24,14 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 openai_client = OpenAI(
     api_key=os.getenv("OPENAI_API_KEY")
 )
+
+
+@app.route("/healthz", methods=["GET"])
+def healthz():
+    message = {
+        'status': 'healthy'
+    }
+    return message, 200
 
 
 @app.route('/', methods=["GET"])
