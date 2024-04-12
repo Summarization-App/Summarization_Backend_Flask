@@ -19,6 +19,8 @@ COPY requirements.txt .
 
 RUN ls
 
+ENV OPENAI_API_KEY 0
+
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
@@ -29,4 +31,4 @@ COPY . .
 EXPOSE 8000
 
 # Command to run the application with Gunicorn
-CMD ["gunicorn", "-b", "0.0.0.0:8000", "wsgi:app"]
+CMD ["gunicorn", "-c", "gunicorn_config.py", "wsgi:hostedApp"]
