@@ -10,7 +10,6 @@ import os
 pdf_path = os.path.join("uploads")
 
 def CreateDoc(filename):
-    print("Inside Create Doc")
     thePDFPath = os.getcwd()+"/uploads/"+filename
     
     loader = PyPDFLoader(thePDFPath)
@@ -23,10 +22,6 @@ def CreateDoc(filename):
                                                    chunk_overlap=1000)
     
     docs = text_splitter.create_documents(docs_raw_text)
-
-    print(type(docs))
-
-    # return docs
 
     return docs
 
