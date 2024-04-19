@@ -14,7 +14,7 @@ Command:\
  `docker run -d -p 8000:8000 -e OPENAI_API_KEY={Code} --name <container_name> <image_name>`
 
 Example:\
-`docker run -d -p 8000:8000 --name test_flask_app my_python_flask`
+`docker run -d -p 8000:8000 -e OPENAI_API_KEY=abcdefgh --name test_flask_app my_python_flask`
 
 ## To push it to your Docker Hub Repo
 
