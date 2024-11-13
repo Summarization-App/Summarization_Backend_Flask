@@ -12,7 +12,7 @@
 # PYTHONUNBUFFERED: When set to 1, this disables Python's output buffering. By default, Python buffers stdout and stderr when they are not directed to a terminal. In a containerized environment where logs are often collected by a logging driver, buffering can delay the availability of log messages. Setting this environment variable to 1 ensures that Python's output streams are unbuffered, allowing logs to be immediately available.
 
 
-FROM python
+FROM python:3.11
 # Set the working directory in the container
 WORKDIR /app
 
